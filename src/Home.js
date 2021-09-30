@@ -1,6 +1,6 @@
 import React from "react";
 import app from "./base";
-import './purchaseOrder_Components/PurchaseOrder1.css'
+import '../purchaseOrder_Components/PurchaseOrder1.css'
 
 const Home = () => {
   return (
