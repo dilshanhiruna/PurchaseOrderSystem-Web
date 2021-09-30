@@ -7,6 +7,7 @@ import SignUp from "./SignUp";
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import PurchaseOrder1 from "./purchaseOrder_Components/PurchaseOrder1";
+import PurchaseOrder2 from "./purchaseOrder_Components/PurchaseOrder2";
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <div>
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/purchaseorder" component={PurchaseOrder1} />
+          <PrivateRoute exact path="/viewpurchaseorder/:id" component={PurchaseOrder2} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
         

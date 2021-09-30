@@ -5,7 +5,8 @@ import './PurchaseOrder1.css'
 
 function PurchaseOrder1() {
 
-    const [order, setOrder] = useState([true])
+    const [order, setOrder] = useState([true]);
+    const [orderID, setorderID] = useState("");
  
     useEffect(() => {
         const fetchData = async() => {
@@ -15,6 +16,12 @@ function PurchaseOrder1() {
         } 
         fetchData()
     }, [])
+
+    const openFullView = (o) => {
+        //
+        window.open("http://localhost:3000/viewpurchaseorder/f32de34","_self")
+        //window.open("http://localhost:3000/viewpurchaseorder/"+{o.OrderID},"_self")
+    }
 
     return (
         <div>
@@ -30,7 +37,7 @@ function PurchaseOrder1() {
                 <div className="purchaseOrderTOP">
                     <h5>Purchase Order</h5>
 
-                    
+
                 </div>
                 <br/>
                 <table border="1" id="myt">
@@ -55,7 +62,7 @@ function PurchaseOrder1() {
                     <td key={o.supplierName}> {o.supplierName}</td>
                     <td key={o.total_price}> {o.total_price}</td>
                     <td key={o.comments}> {o.comments}</td>
-                    <td><button className="purchaseOrder_viewBtn">View</button></td>
+                    <td><button className="purchaseOrder_viewBtn" onClick={() => {openFullView(o)}}>View</button></td>
                     </tr>
                 ))}
             </table>
