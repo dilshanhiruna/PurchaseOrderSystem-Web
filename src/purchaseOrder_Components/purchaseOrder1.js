@@ -32,7 +32,7 @@ function PurchaseOrder1() {
               <th>Site Name</th>
               <th>Supplier Name</th>
               <th>Total Price</th>
-              <th>Comments</th>
+              <th>comments</th>
               <th></th>
             </tr>
           </thead>
