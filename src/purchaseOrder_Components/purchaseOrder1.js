@@ -17,42 +17,6 @@ function PurchaseOrder1() {
 
   return (
     <div>
-      <div className="sidenav">
-        <Link to="/">
-          <i class="fa fa-fw fa-home"></i> Dashboard
-        </Link>
-        <Link to="/">
-          <i class="fa fa-fw fa-phone"></i> Contacts
-        </Link>
-        <Link to="/">
-          <i class="fa fa-fw fa-user-circle-o"></i> Admin
-        </Link>
-        <Link to="/">
-          <i class="fa fa-fw fa-shopping-cart"></i> Purchase Orders
-        </Link>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <a href="#">
-          <i class="fa fa-fw fa-sign-out"></i> Logout
-        </a>
-      </div>
       <div className="puchaseOrdermain">
         <div className="purchaseOrderTOP">
           <h5>Purchase Order</h5>

@@ -1,50 +1,26 @@
 import React from "react";
 import app from "./base";
-import { Link } from "react-router-dom";
+import "./purchaseOrder_Components/purchaseOrder1.css";
 
 const Home = () => {
   return (
     <>
+      {/* <button onClick={() => app.auth().signOut()}>Sign out</button>
+    
       <div className="sidenav">
-        <Link to="/">
-          <i class="fa fa-fw fa-home"></i> Dashboard
-        </Link>
-        <Link href="/">
-          <i class="fa fa-fw fa-phone"></i> Contacts
-        </Link>
-        <Link href="/">
-          <i class="fa fa-fw fa-user-circle-o"></i> Admin
-        </Link>
-        <Link to="/purchaseorder">
-          <i class="fa fa-fw fa-shopping-cart"></i> Purchase Orders
-        </Link>
+        <a href="#"><i class="fa fa-fw fa-home"></i>  Dashboard</a>
+        <a href="#"><i class="fa fa-fw fa-phone"></i>  Contacts</a>
+        <a href="#"><i class="fa fa-fw fa-user-circle-o"></i>  Admin</a>
+        <a href="/purchaseorder"><i class="fa fa-fw fa-shopping-cart"></i>  Purchase Orders</a>
 
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-        <button onClick={() => app.auth().signOut()}>Sign out</button>
+        <a href="#"><i class="fa fa-fw fa-sign-out"></i>  Logout</a>
       </div>
 
       <div className="puchaseOrdermain">
-        <h1>Home</h1>
-      </div>
+          <h1>Home</h1>
+      </div> */}
     </>
   );
 };
