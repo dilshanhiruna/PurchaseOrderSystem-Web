@@ -1,3 +1,6 @@
+/*
+** css for fixed side navigation
+ */
 .sidenav {
     height: 100%;
     width: 185px;
@@ -5,7 +8,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgb(15, 4, 46);
+    background-color: #0f042e;
     overflow-x: hidden;
     padding-top: 20px;
   }
@@ -23,6 +26,11 @@
     color: #f1f1f1;
   }
   
+/*
+** css for main body
+*/
+
+
   .puchaseOrdermain {
     margin-left: 185px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
@@ -34,4 +42,48 @@
         height: 45px;
         padding-top: 10px;
         padding-left: 50px;
+  }
+  
+/*
+** purchase order table css
+*/
+
+  #myt {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #0f042e;
+    font-size: 15px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:white;
+  }
+  #myt th{
+    height :40px;
+    /*background-color : #cfcfcfbb;*/
+    background-color: #204abe67;
+  }
+  #myt tr{
+    height :35px;
+    background-color: #f1f1f17a;
+  }
+  #myt tr:hover{
+    background-color: #bfc8dfcb;
+  }
+
+  /*
+  ** view button css
+  */
+
+  .purchaseOrder_viewBtn{
+    display :block;
+    width :100%;
+    height :35px;
+    background-color : #0f042ee5;
+    color : white;
+    
+  }
+  .purchaseOrder_viewBtn:hover{
+    background-color : white;
+    color : #0f042e69;
+    cursor: pointer;
   }

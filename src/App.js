@@ -6,7 +6,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
-import purchaseOrder1 from "./purchaseOrder_Components/purchaseOrder1";
+import PurchaseOrder1 from "./purchaseOrder_Components/PurchaseOrder1";
 
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
       <Router>
         <div>
           <PrivateRoute exact path="/" component={Home} />
-          <PrivateRoute exact path="/purchaseorder" component={purchaseOrder1} />
+          <PrivateRoute exact path="/purchaseorder" component={PurchaseOrder1} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
         
