@@ -6,30 +6,26 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
+import ViewpurchaseOrder from "./purchaseOrder_Components/ViewpurchaseOrder";
 import PurchaseOrder1 from "./purchaseOrder_Components/PurchaseOrder1";
-import PurchaseOrder2 from "./purchaseOrder_Components/PurchaseOrder2";
+import Navbar from "./Components/Sidebar/Navbar";
 
 
 const App = () => {
   return (
     <AuthProvider>
       <Router>
+        <Navbar/>
         <div>
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/purchaseorder" component={PurchaseOrder1} />
-          <PrivateRoute exact path="/viewpurchaseorder/:id" component={PurchaseOrder2} />
+          <PrivateRoute exact path="/purchaseorder/view/:id" component={ViewpurchaseOrder} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
-        
         </div>
       </Router>
     </AuthProvider>
   );
 };
-
-/*<sideNavigation/>
-            <Switch>
-              <Route path='/' />
-            </Switch>*/
 
 export default App;

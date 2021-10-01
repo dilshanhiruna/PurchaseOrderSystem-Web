@@ -1,11 +1,11 @@
 import React from "react";
 import app from "./base";
-import './purchaseOrder_Components/PurchaseOrder1.css'
+
 
 const Home = () => {
   return (
     <>
-      <button onClick={() => app.auth().signOut()}>Sign out</button>
+      {/* <button onClick={() => app.auth().signOut()}>Sign out</button>
     
       <div className="sidenav">
         <a href="#"><i class="fa fa-fw fa-home"></i>  Dashboard</a>
@@ -20,7 +20,7 @@ const Home = () => {
 
       <div className="puchaseOrdermain">
           <h1>Home</h1>
-      </div>
+      </div> */}
     </>
   );
 };
