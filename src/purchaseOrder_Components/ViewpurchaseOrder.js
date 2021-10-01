@@ -36,6 +36,13 @@ function ViewpurchaseOrder() {
         
       },[])
 
+      const updateState =(status)=>{
+
+        const db = firebase.firestore()
+        db.collection("order").doc(id).update({order_status: status, level: status})
+
+      }
+
     return (
         <div>
             <div className="header-box">
@@ -106,13 +113,13 @@ function ViewpurchaseOrder() {
                     <div class="card-view-row">
                         <div class="container-card-view">
                             <br/>
-
+                            <button onClick={updateState("Approved")}>Approved</button>
+                                        <button  onClick={updateState("Partially Approved")}>Partially Approve</button>
+                                        <button  onClick={updateState("Declined")}>Decline</button>
                                 <div class="dropdown">
                                     <button class="dropbtn">Order status</button>
                                     <div class="dropdown-content">
-                                        <a href="#">Approve</a>
-                                        <a href="#">Partially Approve</a>
-                                        <a href="#">Decline</a>
+                                      
                                     </div>
                                 </div>
                             

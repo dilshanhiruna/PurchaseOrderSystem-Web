@@ -18,8 +18,10 @@ const App = () => {
         <Navbar/>
         <div>
           <PrivateRoute exact path="/" component={Home} />
+
           <PrivateRoute exact path="/purchaseorder" component={PurchaseOrder1} />
           <PrivateRoute exact path="/purchaseorder/view/:id" component={ViewpurchaseOrder} />
+          
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
         </div>

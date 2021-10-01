@@ -3,6 +3,7 @@
     max-height: 490px;
     margin-left: 100px;
     margin-right: 50px;
+    color: rgb(75, 75, 75);;
   }
   .card-view-column {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

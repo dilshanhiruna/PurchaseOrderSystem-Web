@@ -35,7 +35,6 @@ function PurchaseOrder1() {
                                 <th>Site Name</th>
                                 <th>Supplier Name</th>
                                 <th>Total Price</th>
-                                <th>comments</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -49,7 +48,6 @@ function PurchaseOrder1() {
                                 <td key={o.site_Name}> {o.site_Name}</td>
                                 <td key={o.supplierName}> {o.supplierName}</td>
                                 <td key={o.total_price}> {o.total_price}</td>
-                                <td key={o.comments}> {o.comments}</td>
                                 {/*<td><button className="purchaseOrder_viewBtn" onClick={() => {openFullView(o.id)}}>View</button></td>*/}
                                 <td><Link to={"purchaseorder/view/"+o.id} ><button className="purchaseOrder_viewBtn" >View</button></Link></td>
                                 </tr>
