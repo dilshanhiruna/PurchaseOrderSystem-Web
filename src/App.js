@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import Suppliers from './Suppliers';
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import PurchaseOrder1 from "./purchaseOrder_Components/purchaseOrder1";
@@ -21,6 +22,7 @@ const App = () => {
             path="/purchaseorder"
             component={PurchaseOrder1}
           />
+          <Route exact path="/suppliers" component={Suppliers} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
         </div>
