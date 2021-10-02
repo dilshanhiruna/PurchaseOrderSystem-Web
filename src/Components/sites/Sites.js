@@ -38,29 +38,6 @@ export default function Sites() {
 }
 
 function V() {
-	const [sites, setSites] = useState([]);
-	const [loading, setLoading] = useState(false);
-
-	const ref = firebase.firestore().collection('sites');
-	console.log(ref);
-
-	//The function to retreive sites data from the database
-	function getSites() {
-		setLoading(true);
-		ref.onSnapshot((querySnapshot) => {
-			const items = [];
-			querySnapshot.forEach((doc) => {
-				items.push(doc.data());
-			});
-			setSites(items);
-			setLoading(false);
-		});
-	}
-
-	useEffect(() => {
-		getSites();
-	}, []);
-
 	return <ViewSites></ViewSites>;
 }
 
