@@ -1,3 +1,6 @@
+/*
+***card views
+*/
 .content-cards {
     margin-top: 20px;
     max-height: 490px;
@@ -71,14 +74,29 @@
   }
   
   .dropdown:hover .dropbtn {
-    background-color: #24a0ed6b;
+    background-color: #24a0ed81;
   }
 
   input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
+    width: 60%;
+    padding: 8px 20px;
     margin: 8px 0;
     box-sizing: border-box;
     border: 2px solid #24a0ed6b;
     border-radius: 4px;
+  }
+  .status-Btn{
+    background-color: #24a0ed;
+    height: 50px;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px;
+    margin-top: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  .status-Btn:hover{
+    background-color: #24a0ed88;
   }

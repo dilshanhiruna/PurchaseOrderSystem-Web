@@ -6,7 +6,8 @@ import "./PurchaseOrder.css";
 function PurchaseOrder1() {
 
     const [order, setOrder] = useState([true]);
- 
+
+    //rerieve the values of the order collection
     useEffect(() => {
         const fetchData = async() => {
             const db = firebase.firestore()
@@ -23,6 +24,7 @@ function PurchaseOrder1() {
                 <div>Purchase Order</div>
             </div>
                
+                {/* purchase order table */}
 
                 <div className="content-box-list">
                     <table>
@@ -39,6 +41,9 @@ function PurchaseOrder1() {
                             </tr>
                         </thead>
                         <tbody>
+
+                            {/* display fetched values from firestore order collection */}
+
                             {order && order.map(o => (
                                 <tr>
                                 <td key={o.OrderID}> {o.OrderID} </td>
@@ -48,7 +53,6 @@ function PurchaseOrder1() {
                                 <td key={o.site_Name}> {o.site_Name}</td>
                                 <td key={o.supplierName}> {o.supplierName}</td>
                                 <td key={o.total_price}> {o.total_price}</td>
-                                {/*<td><button className="purchaseOrder_viewBtn" onClick={() => {openFullView(o.id)}}>View</button></td>*/}
                                 <td><Link to={"purchaseorder/view/"+o.id} ><button className="purchaseOrder_viewBtn" >View</button></Link></td>
                                 </tr>
                             ))}

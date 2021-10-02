@@ -7,22 +7,24 @@ import { useParams } from "react-router-dom";
 
 function ViewpurchaseOrder() {
 
+    //object ID
     const { id } = useParams();
   
-    
     const [site, setsite] = useState([])
     const [order, setorder] = useState([])
     const [items, setitems] = useState([])
+    const [comment, setComment] = useState("");
 
+        //get the values of an object using object ID
         useEffect(() => {
           const subscriber = firebase.firestore()
             .collection('order')
             .doc(id)
             .onSnapshot(documentSnapshot => {
-                setorder(documentSnapshot.data())
-
+                setorder(documentSnapshot.data())              
                 setitems(documentSnapshot.data().items)
 
+                //using the site ID foregin key get the site collection details of that particular object
                 firebase.firestore()
                 .collection('sites')
                 .doc(documentSnapshot.data().site_ID)
@@ -30,18 +32,40 @@ function ViewpurchaseOrder() {
                     setsite(documentSnapshot.data())
                 
               })
-              
             })
             console.log(order.items)
-        
       },[])
 
-      const updateState =(status)=>{
+      /**
+      **function to update the order_state value and the level
+      **@param status
+      **/
+
+      const updateState = (status)=>{
 
         const db = firebase.firestore()
         db.collection("order").doc(id).update({order_status: status, level: status})
 
       }
+      //add comment
+      firebase.firestore();
+      const getComment = (event) => {
+        setComment(event.target.comment);
+      };
+    
+      const addValue = () => {
+          firebase.firestore().collection('order')
+          .doc(id)
+          .set({
+            comments: comment,
+          })
+          .then(function () {
+            console.log("comment successfully written!");
+          })
+          .catch(function (error) {
+            console.error("Error writing comment: ", error);
+          })
+      }        
 
     return (
         <div>
@@ -49,6 +73,7 @@ function ViewpurchaseOrder() {
                 <div>Purchase Order</div>
             </div>
 
+            {/* display site details according to that place order request*/}
             <div className="content-cards">
 
                 <div className="row">
@@ -65,6 +90,7 @@ function ViewpurchaseOrder() {
                         </div>
                     </div>
 
+                    {/* display order details */}
                     <div class="card-view-column">
                         <div class="container-card-view">
                             <h4><b>Order details</b></h4>
@@ -81,6 +107,7 @@ function ViewpurchaseOrder() {
 
             </div>
 
+            {/* display items detail*/}
             <div className="content-box-list">
                 <table>
                     <thead>
@@ -112,19 +139,26 @@ function ViewpurchaseOrder() {
 
                     <div class="card-view-row">
                         <div class="container-card-view">
-                            <br/>
-                            <button onClick={updateState("Approved")}>Approved</button>
-                                        <button  onClick={updateState("Partially Approved")}>Partially Approve</button>
-                                        <button  onClick={updateState("Declined")}>Decline</button>
-                                <div class="dropdown">
-                                    <button class="dropbtn">Order status</button>
-                                    <div class="dropdown-content">
-                                      
-                                    </div>
-                                </div>
+                           
+
+                                <button onClick={() => updateState('Approved')} className="status-Btn">Approved</button>
+                                <button onClick={() => updateState('Partially Approved')} className="status-Btn">Partially Approved</button>
+                                <button onClick={() => updateState('Decline')} className="status-Btn"> Decline</button>
+
+                        
                             
-                                <label for="comment">Comment</label>
+                                {/* <label for="comment" hidden>Comment</label>
+                                <input type="text" id="comment" name="comment" hidden></input> */}
+                                {/* <label for="comment">Comment</label>
                                 <input type="text" id="comment" name="comment"></input>
+                                <button onClick={()=> addcomment()}>add comment</button> */}
+
+                                        <label><b>Comment:</b></label>
+                                        <input onBlur={getComment} type='text' />
+                                        <button type='button' onClick={addValue} className="status-Btn">
+                                            Add
+                                        </button>
+                                    
                             
                         </div>
                     </div>
@@ -133,6 +167,4 @@ function ViewpurchaseOrder() {
         </div>
     )
 }
-
-export default ViewpurchaseOrder
-
+export default ViewpurchaseOrder;
