@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../../base';
 import { v4 as uuidv4 } from 'uuid';
+import { Redirect } from 'react-router-dom';
 
 export default function AddSite() {
 	const ref = firebase.firestore().collection('sites');
@@ -9,11 +10,13 @@ export default function AddSite() {
 	const [budget, setBudget] = useState('');
 	const [limit, setLimit] = useState('');
 	function addSite(newSite) {
-		alert('inside addsite');
 		ref
 			.doc(newSite.id)
 			.set(newSite)
-			.then(alert('success!'))
+			.then((res) => {
+				alert('success');
+				<Redirect to="/sites" />;
+			})
 			.catch((err) => {
 				alert('error');
 				console.log(err);

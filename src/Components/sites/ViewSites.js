@@ -33,16 +33,9 @@ export default function ViewSites(props) {
 		ref
 			.doc(site.id)
 			.delete()
-			.catch((err) => {
-				console.log(err);
-			});
-	}
-
-	//edit function
-	function editSite(updatedSite) {
-		ref
-			.doc(updatedSite.id)
-			.update(updatedSite)
+			.then((res) => {
+				alert('success');
+			})
 			.catch((err) => {
 				console.log(err);
 			});
@@ -79,9 +72,18 @@ export default function ViewSites(props) {
 										<td> {site.budget}</td>
 										<td> {site.limit}</td>
 										<td>
-											<Link to="/editSite" params={{ testvalue: 'hello' }}>
+											<Link
+												to={{
+													pathname: '/sites/editSite',
+													state: { fromViewComponent: true, data: site },
+												}}
+											>
 												<button className="purchaseOrder_viewBtn">Edit</button>
 											</Link>
+											{/* <Link to="/editSite" params={{}}>
+												<button className="purchaseOrder_viewBtn">Edit</button>
+											</Link> */}
+
 											<button
 												onClick={() => deleteSite(site)}
 												className="purchaseOrder_viewBtn"

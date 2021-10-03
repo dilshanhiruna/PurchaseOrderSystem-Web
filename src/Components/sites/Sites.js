@@ -13,7 +13,7 @@ export default function Sites() {
 				<Link to="/sites">
 					<button type="button">View Sites</button>
 				</Link>
-				<Link to="/addSite">
+				<Link to="/sites/addSite">
 					<button type="button">Add Site</button>
 				</Link>
 				{/* A <Switch> looks through its children <Route>s and
@@ -22,10 +22,10 @@ export default function Sites() {
 					<Route exact path="/sites">
 						<V />
 					</Route>
-					<Route exact path="/addSite">
+					<Route exact path="/sites/addSite">
 						<A />
 					</Route>
-					<Route exact path="/editSite">
+					<Route exact path="/sites/editSite">
 						<EditSite></EditSite>
 					</Route>
 				</Switch>
