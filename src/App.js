@@ -9,13 +9,14 @@ import PrivateRoute from './PrivateRoute';
 import PurchaseOrder1 from './purchaseOrder_Components/purchaseOrder1';
 import Navbar from './Components/Sidebar/Navbar';
 import Sites from './Components/sites/Sites';
+import AddSite from './Components/sites/AddSite';
 
 const App = () => {
 	return (
 		<AuthProvider>
 			<Router>
 				<Navbar />
-				<div>
+				<div className="container">
 					<PrivateRoute exact path="/" component={Home} />
 					<PrivateRoute
 						exact
@@ -26,6 +27,7 @@ const App = () => {
 					<Route exact path="/signup" component={SignUp} />
 					<Route exact path="/suppliers" component={SignUp} />
 					<Route exact path="/sites" component={Sites} />
+					{/* <Route exact path="/addSite" component={AddSite} /> */}
 				</div>
 			</Router>
 		</AuthProvider>
