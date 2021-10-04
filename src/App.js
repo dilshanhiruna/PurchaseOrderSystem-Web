@@ -22,7 +22,7 @@ const App = () => {
             path="/purchaseorder"
             component={PurchaseOrder1}
           />
-          <Route exact path="/suppliers" component={Suppliers} />
+          <PrivateRoute exact path="/suppliers" component={Suppliers} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
         </div>

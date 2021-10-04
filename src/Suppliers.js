@@ -6,9 +6,11 @@ import { addSupplierInitiate, deleteSupplierInitiate, getSupplierInitiate, getSu
 import { DELETE_SUPPLIER } from './redux/actionTypes';
 
 
+//Define the initial states
 const initialState = {
     name: "",
     address: "",
+    contact: ""
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +33,7 @@ const Suppliers = () => {
     const [editMode, setEditMode] = useState(false);
     const [userId, setUserId] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
-    const {name, address} = state;
+    const {name, address, contact} = state;
     const dispatch = useDispatch();
     const {suppliers, supplier} = useSelector(state => state.data);
 
@@ -66,7 +68,7 @@ const Suppliers = () => {
         e.preventDefault();
 
         //Validations
-        if(!name || !address) {
+        if(!name || !address || !contact) {
             setErrorMessage("Fields cannot be empty!");
         } else {
 
@@ -79,7 +81,8 @@ const Suppliers = () => {
 
                 //If all the input fields contain values
                 setErrorMessage("");
-            } else {
+            } 
+            else {
                 dispatch(updateSupplierInitiate(userId, state));
                 setUserId(null);
                 setEditMode(false);
@@ -105,6 +108,7 @@ const Suppliers = () => {
                                 <th scope='col'>ID</th>
                                 <th scope='col'>Name</th>
                                 <th scope='col'>Address</th>
+                                <th scope='col'>Contact Number</th>
                                 <th scope='col'>Actions</th>
                             </tr>
                         </MDBTableHead>
@@ -114,6 +118,7 @@ const Suppliers = () => {
                                 <th scope='row'>{index+1}</th>
                                 <td>{item.name}</td>
                                 <td>{item.address}</td>
+                                <td>{item.contact}</td>
                                 <td>
                                     <MDBBtn className="m-1" tag="a" color="none" style={{color: "#55acee"}} onClick={() => editSupplier(item.id)}>
                                         <MDBIcon fas icon="pen" size="lg" />
@@ -149,6 +154,14 @@ const Suppliers = () => {
                             value={address || ""}
                             name="address"
                             type="text"
+                            onChange={handleInputChange}
+                        />
+                        <br />
+                        <MDBInput 
+                            label="Contact"
+                            value={contact || ""}
+                            name="contact"
+                            type="number"
                             onChange={handleInputChange}
                         />
                         <br />
