@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import { addSupplierInitiate, deleteSupplierInitiate, getSupplierInitiate, getSuppliersInitiate, updateSupplierInitiate } from "./redux/actions";
 import { DELETE_SUPPLIER } from './redux/actionTypes';
+import "./Suppliers.css";
 
 
 //Define the initial states
