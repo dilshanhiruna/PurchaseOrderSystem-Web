@@ -100,6 +100,9 @@ const Suppliers = () => {
 
     return (
         <MDBContainer fluid>
+                <div className="header-suppliers">
+                    <div>Suppliers</div>
+                </div>
             <MDBRow>
                 <MDBCol md="8">
                     <MDBTable style={{marginTop: "100px"}} bordered>
