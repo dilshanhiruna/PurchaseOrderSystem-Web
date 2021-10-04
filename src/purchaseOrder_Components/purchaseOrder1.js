@@ -24,7 +24,7 @@ function PurchaseOrder1() {
             <div className="header-box">
                 <div>Purchase Order
 
-                    <input type="text" placeholder="Search.." className="searchbar" style={{ marginLeft:70, width: "30%"}}
+                    <input type="text" placeholder="Search.." className="searchbar" style={{ marginLeft:650, width: "30%"}}
                         onChange={(e) => setsearch(e.target.value)} />
 
                 </div>
@@ -48,8 +48,9 @@ function PurchaseOrder1() {
                         <tbody>
 
                             {/* 
-                            ****Retrieve order table details 
-                            ****can search using supplier name , site name and order_status
+                            **Retrieve order table details 
+                            **can search using supplier name , site name and order_status
+	                        **@return the item
                             */}
                             {order && order.filter((item) =>{
                                 if(setsearch === ''){
@@ -75,7 +76,7 @@ function PurchaseOrder1() {
                                 </tr>
                             ))}
                         </tbody>
-                    </table>
+                    </table> {/*end of the order table*/}
                 
                 </div>
             </div>

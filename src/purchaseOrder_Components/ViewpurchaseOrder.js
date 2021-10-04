@@ -1,9 +1,8 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useRef } from 'react'
 import firebase from '../base'
 import "./PurchaseOrder.css";
 import "./ViewpurchaseOrder.css"
 import { useParams } from "react-router-dom";
-
 
 function ViewpurchaseOrder() {
 
@@ -13,7 +12,6 @@ function ViewpurchaseOrder() {
     const [site, setsite] = useState([])
     const [order, setorder] = useState([])
     const [items, setitems] = useState([])
-    const [comment, setComment] = useState([]);
 
         //get the values of an object using object ID
         useEffect(() => {
@@ -47,25 +45,16 @@ function ViewpurchaseOrder() {
         db.collection("order").doc(id).update({order_status: status, level: status})
 
       }
+      
       //add comment
-      firebase.firestore();
-      const getComment = (event) => {
-        setComment(event.target.comment);
-      };
-    
-      const addValue = () => {
-          firebase.firestore().collection('order')
-          .doc(id)
-          .update({
-            comments: comment,
-          })
-          .then(function () {
-            console.log("comment successfully written!");
-          })
-          .catch(function (error) {
-            console.error("Error writing comment: ", error);
-          })
-      }        
+      const commentRef = useRef();
+      const adcomment = ()=>{
+
+        const comment1 = commentRef.current.value;
+        const db = firebase.firestore()
+        db.collection("order").doc(id).update({comments: comment1 })
+
+      }
 
     return (
         <div>
@@ -138,27 +127,19 @@ function ViewpurchaseOrder() {
 
                     <div class="card-view-row">
                         <div class="container-card-view">
-                           
+
+                                {/* buttons to approve the order */}
 
                                 <button onClick={() => updateState('Approved')} className="status-Btn">Approved</button>
                                 <button onClick={() => updateState('Partially Approved')} className="status-Btn">Partially Approved</button>
                                 <button onClick={() => updateState('Decline')} className="status-Btn"> Decline</button>
 
-                        
-                            
-                                {/* <label for="comment" hidden>Comment</label>
-                                <input type="text" id="comment" name="comment" hidden></input> */}
-                                {/* <label for="comment">Comment</label>
-                                <input type="text" id="comment" name="comment"></input>
-                                <button onClick={()=> addcomment()}>add comment</button> */}
-
-                                        <label><b>Comment:</b></label>
-                                        <input onBlur={getComment} type='text' />
-                                        <button type='button' onClick={addValue} className="status-Btn">
-                                            Add
-                                        </button>
-                                    
-                            
+                                {/* text input for the comment */}
+                                <label><b>Comment:</b></label>
+                                <input type='text' ref={commentRef}/>
+                                <button type='button' onClick={adcomment} className="status-Btn">
+                                    Add
+                                </button>
                         </div>
                     </div>
             </div>  

@@ -105,10 +105,10 @@
   .searchbar{
     height: 20%;
     margin:55px;
-    padding-left: 30px;
+    padding-left: 60px;
     font-size: 18px;
     background-color: rgb(255, 255, 255);
-    margin-left : 65%;
+    margin-left : 75%;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
   }
