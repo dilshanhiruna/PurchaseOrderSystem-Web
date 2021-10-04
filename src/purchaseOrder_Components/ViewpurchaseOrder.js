@@ -13,7 +13,7 @@ function ViewpurchaseOrder() {
     const [site, setsite] = useState([])
     const [order, setorder] = useState([])
     const [items, setitems] = useState([])
-    const [comment, setComment] = useState("");
+    const [comment, setComment] = useState([]);
 
         //get the values of an object using object ID
         useEffect(() => {
@@ -56,7 +56,7 @@ function ViewpurchaseOrder() {
       const addValue = () => {
           firebase.firestore().collection('order')
           .doc(id)
-          .set({
+          .update({
             comments: comment,
           })
           .then(function () {
@@ -81,7 +81,6 @@ function ViewpurchaseOrder() {
                         <div class="container-card-view">
                             <h4><b>Site Details</b></h4>
                             <p>
-                                    {/* <li><b>Site ID</b>   : {order.site_ID} </li> */}
                                     <li><b>Name</b>      : {site.name} </li>
                                     <li><b>Address</b>    : {site.location} </li>
                                     <li><b>Budget</b>     : {site.budget} </li>

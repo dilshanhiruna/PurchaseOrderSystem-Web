@@ -6,6 +6,7 @@ import "./PurchaseOrder.css";
 function PurchaseOrder1() {
 
     const [order, setOrder] = useState([true]);
+    const [search,setsearch] = useState("");
 
     //rerieve the values of the order collection
     useEffect(() => {
@@ -21,9 +22,13 @@ function PurchaseOrder1() {
     return (
         <div>
             <div className="header-box">
-                <div>Purchase Order</div>
+                <div>Purchase Order
+
+                    <input type="text" placeholder="Search.." className="searchbar" style={{ marginLeft:70, width: "30%"}}
+                        onChange={(e) => setsearch(e.target.value)} />
+
+                </div>
             </div>
-               
                 {/* purchase order table */}
 
                 <div className="content-box-list">
@@ -42,9 +47,22 @@ function PurchaseOrder1() {
                         </thead>
                         <tbody>
 
-                            {/* display fetched values from firestore order collection */}
-
-                            {order && order.map(o => (
+                            {/* 
+                            ****Retrieve order table details 
+                            ****can search using supplier name , site name and order_status
+                            */}
+                            {order && order.filter((item) =>{
+                                if(setsearch === ''){
+                                    return item;
+                                }
+                                else if(item.site_Name && item.site_Name.toLowerCase().includes(search.toLowerCase())
+                                    || (item.supplierName && item.supplierName.toLowerCase().includes(search.toLowerCase()))
+                                    || item.order_status && item.order_status.toLowerCase().includes(search.toLowerCase())
+                                ){
+                                    return item;
+                                }
+                            }
+                            ).map(o => (
                                 <tr>
                                 <td key={o.OrderID}> {o.OrderID} </td>
                                 <td key={o.Purchase_date}> {o.Purchase_date}</td>
