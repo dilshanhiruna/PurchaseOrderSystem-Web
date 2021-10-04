@@ -22,26 +22,9 @@ export default function EditSite(props) {
 
 	const id = data.id;
 
-	//edit function
 	function editSite(updatedSite) {
-		console.log('id ' + id);
-		console.log('name ' + name);
-		console.log('location ' + location);
-		console.log('budget ' + budget);
-		console.log('limit ' + limit);
-
-		ref
-			.doc(updatedSite.id)
-			.update(updatedSite)
-			.then((res) => {
-				alert('success');
-				<Redirect to="/sites" />;
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		props.editSiteDB(updatedSite);
 	}
-	// console.log(data);
 	return (
 		<>
 			{fromViewComponent ? (
@@ -77,7 +60,7 @@ export default function EditSite(props) {
 						<div className="form-group">
 							<label>Budget</label>
 							<input
-								type="text"
+								type="number"
 								className="form-control"
 								id="budget"
 								defaultValue={data.budget}
@@ -90,7 +73,7 @@ export default function EditSite(props) {
 						<div className="form-group">
 							<label>Auto Approval Limit</label>
 							<input
-								type="text"
+								type="number"
 								className="form-control"
 								id="limit"
 								defaultValue={data.limit}

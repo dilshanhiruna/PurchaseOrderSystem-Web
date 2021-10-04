@@ -9,6 +9,7 @@ const ref = firebase.firestore().collection('sites');
 
 export default function Sites() {
 	const [returnVal, setReturnVal] = useState('test');
+
 	//Add sites to DB
 	const addSiteDB = (newSite) => {
 		ref
@@ -30,9 +31,35 @@ export default function Sites() {
 			querySnapshot.forEach((doc) => {
 				items.push(doc.data());
 			});
-			console.log('inside get sitedb');
 			setReturnVal(items);
 		});
+		return returnVal;
+	}
+
+	//delete function db
+	const deleteSiteDB = (site) => {
+		ref
+			.doc(site.id)
+			.delete()
+			.then((res) => {
+				alert('success');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	//edit function db
+	function editSiteDB(updatedSite) {
+		ref
+			.doc(updatedSite.id)
+			.update(updatedSite)
+			.then((res) => {
+				alert('success');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}
 
 	return (
@@ -48,13 +75,17 @@ export default function Sites() {
 
 					<Switch>
 						<Route exact path="/sites">
-							<ViewSites getSitesDB={getSitesDB}></ViewSites>
+							<ViewSites
+								getSitesDB={getSitesDB}
+								returnVal={returnVal}
+								deleteSiteDB={deleteSiteDB}
+							></ViewSites>
 						</Route>
 						<Route exact path="/sites/addSite">
 							<AddSite addSiteDB={addSiteDB}></AddSite>;
 						</Route>
 						<Route exact path="/sites/editSite">
-							<EditSite></EditSite>
+							<EditSite editSiteDB={editSiteDB}></EditSite>
 						</Route>
 					</Switch>
 				</div>

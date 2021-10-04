@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
 import firebase from '../../base';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 export default function ViewSites(props) {
 	const ref = firebase.firestore().collection('sites');
@@ -9,42 +8,35 @@ export default function ViewSites(props) {
 	const [loading, setLoading] = useState(false);
 
 	//The function to retreive sites data from the database
-
 	function getSitesDB() {
 		ref.onSnapshot((querySnapshot) => {
 			const items = [];
 			querySnapshot.forEach((doc) => {
 				items.push(doc.data());
 			});
-			console.log('inside get sitedb');
 			setSites(items);
 		});
 	}
 
 	useEffect(() => {
-		setLoading(true);
-		getSitesDB();
-
-		setLoading(false);
+		try {
+			// setLoading(true);
+			// const returnVal = props.getSitesDB();
+			// setSites(returnVal);
+			// alert('done');
+			// setLoading(false);
+			getSitesDB();
+		} catch (error) {}
 	}, []);
 
-	//delete function
 	function deleteSite(site) {
-		ref
-			.doc(site.id)
-			.delete()
-			.then((res) => {
-				alert('success');
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		props.deleteSiteDB(site);
 	}
-
 	// Show a h1 tag saying loading if loading is true
 	if (loading) {
 		return <h1>Loading...</h1>;
 	}
+
 	return (
 		<div>
 			<div>
