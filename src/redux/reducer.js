@@ -1,5 +1,6 @@
 import * as types from "./actionTypes";
 
+//Define the initial state
 const initialState = {
     suppliers: [],
     supplier: {},
