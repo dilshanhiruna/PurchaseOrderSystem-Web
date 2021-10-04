@@ -16,7 +16,7 @@ const App = () => {
 		<AuthProvider>
 			<Router>
 				<Navbar />
-				<div class="container">
+				<div className="container">
 					<PrivateRoute exact path="/" component={Home} />
 					<PrivateRoute
 						exact

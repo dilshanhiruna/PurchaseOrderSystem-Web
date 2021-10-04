@@ -23,14 +23,7 @@ export default function EditSite(props) {
 	const id = data.id;
 
 	//edit function
-	//edit function
 	function editSite(updatedSite) {
-		// alert(id);
-		// alert(name);
-		// alert(location);
-		// alert(budget);
-		// alert(limit);
-
 		console.log('id ' + id);
 		console.log('name ' + name);
 		console.log('location ' + location);
@@ -63,7 +56,9 @@ export default function EditSite(props) {
 								aria-describedby="emailHelp"
 								placeholder="Enter the site name"
 								defaultValue={data.name}
-								onChange={(e) => setName(e.target.value)}
+								onChange={(e) => {
+									setName(e.target.value);
+								}}
 							></input>
 						</div>
 						<div className="form-group">
@@ -74,7 +69,9 @@ export default function EditSite(props) {
 								id="location"
 								defaultValue={data.location}
 								placeholder="Enter the site address"
-								onChange={(e) => setLocation(e.target.value)}
+								onChange={(e) => {
+									setLocation(e.target.value);
+								}}
 							></input>
 						</div>
 						<div className="form-group">
@@ -85,7 +82,9 @@ export default function EditSite(props) {
 								id="budget"
 								defaultValue={data.budget}
 								placeholder="Enter the site budget"
-								onChange={(e) => setBudget(e.target.value)}
+								onChange={(e) => {
+									setBudget(e.target.value);
+								}}
 							></input>
 						</div>
 						<div className="form-group">
@@ -96,7 +95,9 @@ export default function EditSite(props) {
 								id="limit"
 								defaultValue={data.limit}
 								placeholder="Enter the site auto approval limit for oders"
-								onChange={(e) => setLimit(e.target.value)}
+								onChange={(e) => {
+									setLimit(e.target.value);
+								}}
 							></input>
 						</div>
 					</div>

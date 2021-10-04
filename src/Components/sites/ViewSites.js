@@ -4,28 +4,28 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import firebase from '../../base';
 
 export default function ViewSites(props) {
-	// const sites = props.sites;
-	// const loading = props.loading;
-
 	const ref = firebase.firestore().collection('sites');
 	const [sites, setSites] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	//The function to retreive sites data from the database
-	function getSites() {
-		setLoading(true);
+
+	function getSitesDB() {
 		ref.onSnapshot((querySnapshot) => {
 			const items = [];
 			querySnapshot.forEach((doc) => {
 				items.push(doc.data());
 			});
+			console.log('inside get sitedb');
 			setSites(items);
-			setLoading(false);
 		});
 	}
 
 	useEffect(() => {
-		getSites();
+		setLoading(true);
+		getSitesDB();
+
+		setLoading(false);
 	}, []);
 
 	//delete function

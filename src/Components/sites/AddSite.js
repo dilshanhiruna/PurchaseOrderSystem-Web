@@ -3,24 +3,16 @@ import firebase from '../../base';
 import { v4 as uuidv4 } from 'uuid';
 import { Redirect } from 'react-router-dom';
 
-export default function AddSite() {
+export default function AddSite(props) {
 	const ref = firebase.firestore().collection('sites');
 	const [name, setName] = useState('');
 	const [location, setLocation] = useState('');
 	const [budget, setBudget] = useState('');
 	const [limit, setLimit] = useState('');
+
+	//calling add function to add site data
 	function addSite(newSite) {
-		ref
-			.doc(newSite.id)
-			.set(newSite)
-			.then((res) => {
-				alert('success');
-				<Redirect to="/sites" />;
-			})
-			.catch((err) => {
-				alert('error');
-				console.log(err);
-			});
+		props.addSiteDB(newSite);
 	}
 	return (
 		<form style={{ width: '50%' }}>
@@ -33,7 +25,9 @@ export default function AddSite() {
 						id="name"
 						aria-describedby="emailHelp"
 						placeholder="Enter the site name"
-						onChange={(e) => setName(e.target.value)}
+						onChange={(e) => {
+							setName(e.target.value);
+						}}
 					></input>
 				</div>
 				<div className="form-group">
@@ -43,27 +37,33 @@ export default function AddSite() {
 						className="form-control"
 						id="location"
 						placeholder="Enter the site address"
-						onChange={(e) => setLocation(e.target.value)}
+						onChange={(e) => {
+							setLocation(e.target.value);
+						}}
 					></input>
 				</div>
 				<div className="form-group">
 					<label>Budget</label>
 					<input
-						type="text"
+						type="number"
 						className="form-control"
 						id="budget"
 						placeholder="Enter the site budget"
-						onChange={(e) => setBudget(e.target.value)}
+						onChange={(e) => {
+							setBudget(e.target.value);
+						}}
 					></input>
 				</div>
 				<div className="form-group">
 					<label>Auto Approval Limit</label>
 					<input
-						type="text"
+						type="number"
 						className="form-control"
 						id="limit"
 						placeholder="Enter the site auto approval limit for oders"
-						onChange={(e) => setLimit(e.target.value)}
+						onChange={(e) => {
+							setLimit(e.target.value);
+						}}
 					></input>
 				</div>
 			</div>
