@@ -1,5 +1,5 @@
 import * as types from "./actionTypes";
-import firebase from "../base";
+import db from "../firebase";
 
 const getSuppliers = (suppliers) => ({
     type: types.GET_SUPPLIERS,
@@ -23,9 +23,10 @@ const getSupplier = (supplier) => ({
     payload: supplier,
 });
 
+
+//To fetch all the suppliers from Firestore database
 export const getSuppliersInitiate = () => {
     return function(dispatch) {
-        const db = firebase.firestore();
         db.collection("suppliers").onSnapshot((querySnapshot) => {
             const suppliers = [];
             querySnapshot.forEach((doc) => {
@@ -36,9 +37,12 @@ export const getSuppliersInitiate = () => {
     };
 };
 
+
+//Define the action to initiate adding supplier
 export const addSupplierInitiate = (supplier) => {
     return function(dispatch) {
-        const db = firebase.firestore();
+
+        //To insert data into Firestore collection
         db.collection("suppliers").doc().set(supplier);
         dispatch(addSupplier());
     };
@@ -46,7 +50,6 @@ export const addSupplierInitiate = (supplier) => {
 
 export const deleteSupplierInitiate = (id) => {
     return function(dispatch) {
-        const db = firebase.firestore();
         db.collection("suppliers").doc(id).delete();
         dispatch(deleteSupplier());
     };
@@ -54,7 +57,6 @@ export const deleteSupplierInitiate = (id) => {
 
 export const updateSupplierInitiate = (id, supplier) => {
     return function(dispatch) {
-        const db = firebase.firestore();
         db.collection("suppliers").doc(id).update(supplier);
         dispatch(updateSupplier());
     };
@@ -62,7 +64,6 @@ export const updateSupplierInitiate = (id, supplier) => {
 
 export const getSupplierInitiate = (id) => {
     return function(dispatch) {
-        const db = firebase.firestore();
         db.collection("suppliers").doc(id).get().then((supplier) => {
             dispatch(getSupplier({...supplier.data()}))
         }).catch((error) => console.log(error));
