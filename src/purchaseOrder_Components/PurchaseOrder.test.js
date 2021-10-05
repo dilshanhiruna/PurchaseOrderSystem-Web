@@ -1,19 +1,10 @@
-import * as React from 'react';
- import * as ReactDOM from 'react-dom';
-import {PurchaseOrder1} from '../purchaseOrder_Components/PurchaseOrder1'
-import {ViewpurchaseOrder} from './ViewpurchaseOrder'
-
-describe('PurchaseOrder1', () => {
-    it('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<PurchaseOrder1/>,div);
-    });
-});
-
-describe('ViewpurchaseOrder', () => {
-    it('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<ViewpurchaseOrder></ViewpurchaseOrder>,div);
-    });
-});
-
+const {TestWatcher} = require('@jest/core');
+import {render,screen,act} from "@testing-library/react";
+const PurchaseOrder1 = require('./PurchaseOrder1');
+//test rerieve data 
+describe("retrieve data from firebase", ()=> {
+	it("loads ....",async () => {
+		await act(async () => render (<PurchaseOrder1/>));
+		expect(screen.getByText("order")).toBeInTheDocument();
+	})
+})
