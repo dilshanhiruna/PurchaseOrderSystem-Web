@@ -30,5 +30,28 @@ test('properly update the supplier', () => {
         address: 'N0 50, Malabe, Sri Lanka',
         contact: '0112533333'
     };
-    expect(Suppliers.updateSupplier()).toBe(true);
+    expect(Suppliers.updateSupplier(id)).toBe(true);
+});
+
+
+//Negative test case for update the details of a supplier
+test('properly update the supplier', () => {
+    var newSupplierObject4 = {
+        name: 'ABC Company',
+        address: 'N0 50, Malabe, Sri Lanka',
+        contact: ''
+    };
+    expect(Suppliers.updateSupplier(id)).toBe(true);
+});
+
+
+//Test case for view all the suppliers
+test('properly view all the suppliers', () => {
+    expect(Suppliers.getSuppliers(suppliers)).toBe(true);
+});
+
+
+//Test case for delete a supplier
+test('properly delete the supplier', () => {
+    expect(Suppliers.deleteSupplier(id)).toBe(true);
 });
