@@ -1,3 +1,4 @@
+
 .header-box {
   font-size: 35px;
   color: rgb(75, 75, 75);
@@ -24,6 +25,8 @@
   border: 1px solid rgb(180, 156, 20);
   color: rgb(180, 156, 20);
 }
+
+/*buttons in the purchase order table*/
 
 .purchaseOrder_viewBtn {
   width: 100%;
@@ -59,6 +62,8 @@
   border: 1px solid rgb(255, 0, 55);
   color: rgb(255, 0, 55);
 }
+
+/*table design*/
 
 .content-box-list {
   overflow-y: scroll;
@@ -178,3 +183,5 @@
 .content-box-list i:hover {
   color: #000000;
 }
+
+
