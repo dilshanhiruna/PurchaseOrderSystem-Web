@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import firebase from '../../base';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Redirect } from 'react-router-dom';
 
 export default function AddSite(props) {
-	const ref = firebase.firestore().collection('sites');
+	//initalizing constants
 	const [name, setName] = useState('');
 	const [location, setLocation] = useState('');
 	const [budget, setBudget] = useState('');
@@ -14,6 +12,8 @@ export default function AddSite(props) {
 	function addSite(newSite) {
 		props.addSiteDB(newSite);
 	}
+
+	//rendering html
 	return (
 		<form style={{ width: '50%' }}>
 			<div className="form-row">

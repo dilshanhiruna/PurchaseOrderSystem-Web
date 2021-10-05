@@ -36,7 +36,7 @@ export default function Sites() {
 		return returnVal;
 	}
 
-	//delete function db
+	//Delete sites from db
 	const deleteSiteDB = (site) => {
 		ref
 			.doc(site.id)
@@ -49,7 +49,7 @@ export default function Sites() {
 			});
 	};
 
-	//edit function db
+	//Edit Sites in db
 	function editSiteDB(updatedSite) {
 		ref
 			.doc(updatedSite.id)
@@ -62,6 +62,7 @@ export default function Sites() {
 			});
 	}
 
+	//Rendering child components
 	return (
 		<>
 			<Router>

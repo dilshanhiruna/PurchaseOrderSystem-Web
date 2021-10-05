@@ -1,30 +1,28 @@
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { React } from 'react-dom';
 
-import { useState, useEffect } from 'react';
-import firebase from '../../base';
-import { v4 as uuidv4 } from 'uuid';
-import { Redirect } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function EditSite(props) {
 	//getting data using props
-	const { handle } = useParams();
 	const loc = useLocation();
 	const { fromViewComponent } = loc.state;
 	const { data } = loc.state;
 
-	//
-	const ref = firebase.firestore().collection('sites');
+	//assigning values to variables
 	const [name, setName] = useState('');
 	const [location, setLocation] = useState('');
 	const [budget, setBudget] = useState('');
 	const [limit, setLimit] = useState('');
-
 	const id = data.id;
 
+	//calling function in parent component to edit site data
 	function editSite(updatedSite) {
+		alert('success');
 		props.editSiteDB(updatedSite);
 	}
+
+	//rendering html
 	return (
 		<>
 			{fromViewComponent ? (
