@@ -1,47 +1,36 @@
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { React } from 'react-dom';
 
-import { useState, useEffect } from 'react';
-import firebase from '../../base';
-import { v4 as uuidv4 } from 'uuid';
-import { Redirect } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function EditSite(props) {
-	//getting data using props
-	const { handle } = useParams();
+	//getting data from viewComponent using props
 	const loc = useLocation();
 	const { fromViewComponent } = loc.state;
+
+	//Initial value object to be displayed in the edit form
 	const { data } = loc.state;
 
-	//
-	const ref = firebase.firestore().collection('sites');
+	//useState hooks to save changed values to constants
 	const [name, setName] = useState('');
 	const [location, setLocation] = useState('');
 	const [budget, setBudget] = useState('');
 	const [limit, setLimit] = useState('');
-
 	const id = data.id;
 
-	//edit function
+	//calling function in parent component to edit site data
+	//returns true if edit is success
 	function editSite(updatedSite) {
-		console.log('id ' + id);
-		console.log('name ' + name);
-		console.log('location ' + location);
-		console.log('budget ' + budget);
-		console.log('limit ' + limit);
+		const isSuccess = props.editSiteDB(updatedSite);
 
-		ref
-			.doc(updatedSite.id)
-			.update(updatedSite)
-			.then((res) => {
-				alert('success');
-				<Redirect to="/sites" />;
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		if (isSuccess === true) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-	// console.log(data);
+
+	//rendering html to display edit form
 	return (
 		<>
 			{fromViewComponent ? (
@@ -77,7 +66,7 @@ export default function EditSite(props) {
 						<div className="form-group">
 							<label>Budget</label>
 							<input
-								type="text"
+								type="number"
 								className="form-control"
 								id="budget"
 								defaultValue={data.budget}
@@ -90,7 +79,7 @@ export default function EditSite(props) {
 						<div className="form-group">
 							<label>Auto Approval Limit</label>
 							<input
-								type="text"
+								type="number"
 								className="form-control"
 								id="limit"
 								defaultValue={data.limit}
