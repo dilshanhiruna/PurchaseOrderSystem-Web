@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+//Functional component to add a new site
+// Renders a html form to insert values and, on submit those balues are passed into addSite function
 export default function AddSite(props) {
-	//initalizing constants
+	//initalizing constants to input values with useStae hooks
 	const [name, setName] = useState('');
 	const [location, setLocation] = useState('');
 	const [budget, setBudget] = useState('');
 	const [limit, setLimit] = useState('');
 
-	//calling add function to add site data
+	//calling addSiteDB function to add site data
+	//returns true if insertion success
 	function addSite(newSite) {
-		props.addSiteDB(newSite);
+		const isSuccess = props.addSiteDB(newSite);
+
+		if (isSuccess === true) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	//rendering html
+	//rendering html to display from
 	return (
 		<form style={{ width: '50%' }}>
 			<div className="form-row">
