@@ -1,4 +1,3 @@
-
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -21,14 +20,15 @@ const App = () => {
         <Navbar/>
         <div>
           <PrivateRoute exact path="/" component={Home} />
-
           <PrivateRoute exact path="/purchaseorder" component={PurchaseOrder1} />
           <PrivateRoute exact path="/purchaseorder/view/:id" component={ViewpurchaseOrder} />
           
 				  <Route exact path="/login" component={Login} />
 				  <Route exact path="/signup" component={SignUp} />
-				  <Route exact path="/suppliers" component={SignUp} />
-				  <Route exact path="/sites" component={Sites} />
+				  
+					<Route exact path="/suppliers" component={Suppliers} />
+					<Route exact path="/sites" component={Sites} />
+					{/* <Route exact path="/addSite" component={AddSite} /> */}
         </div>
       </Router>
     </AuthProvider>

@@ -1,50 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
-import firebase from '../../base';
+import { BrowserRouter as Link } from 'react-router-dom';
 
 export default function ViewSites(props) {
-	const ref = firebase.firestore().collection('sites');
+	//constants to store retreived site data
 	const [sites, setSites] = useState([]);
 	const [loading, setLoading] = useState(false);
 
-	//The function to retreive sites data from the database
+	//The function to call retreived data
+	//If success, data is saved in sites constant and true is returned
+	function getSites() {
+		setLoading(true);
+		const returnVal = props.getSitesDB;
 
-	function getSitesDB() {
-		ref.onSnapshot((querySnapshot) => {
-			const items = [];
-			querySnapshot.forEach((doc) => {
-				items.push(doc.data());
-			});
-			console.log('inside get sitedb');
-			setSites(items);
-		});
+		if (returnVal) {
+			setSites(returnVal);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
+	//useEffect hook to call getSites function at the initilization of the component
 	useEffect(() => {
-		setLoading(true);
-		getSitesDB();
-
-		setLoading(false);
+		try {
+			getSites();
+		} catch (error) {}
 	}, []);
 
-	//delete function
+	//calling deleteSiteDB function to delete data
+	//returns true if success
 	function deleteSite(site) {
-		ref
-			.doc(site.id)
-			.delete()
-			.then((res) => {
-				alert('success');
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}
+		const isSuccess = props.deleteSiteDB(site);
 
+		if (isSuccess === true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	// Show a h1 tag saying loading if loading is true
 	if (loading) {
 		return <h1>Loading...</h1>;
 	}
+
+	//Render html to display a table of retrieved site data
 	return (
 		<div>
 			<div>
@@ -80,9 +79,6 @@ export default function ViewSites(props) {
 											>
 												<button className="purchaseOrder_viewBtn">Edit</button>
 											</Link>
-											{/* <Link to="/editSite" params={{}}>
-												<button className="purchaseOrder_viewBtn">Edit</button>
-											</Link> */}
 
 											<button
 												onClick={() => deleteSite(site)}
