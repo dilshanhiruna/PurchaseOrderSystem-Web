@@ -130,7 +130,7 @@ function ViewpurchaseOrder() {
 
                                 {/* buttons to approve the order */}
 
-                                <button onClick={() => updateState('Approved')} className="status-Btn">Approved</button>
+                                <button onClick={() => updateState('Approved')} className="status-Btn" data-testid='approvedLabel'>Approved</button>
                                 <button onClick={() => updateState('Partially Approved')} className="status-Btn">Partially Approved</button>
                                 <button onClick={() => updateState('Decline')} className="status-Btn"> Decline</button>
 
