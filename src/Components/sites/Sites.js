@@ -11,63 +11,63 @@ const ref = firebase.firestore().collection('sites');
 //Parent of all add,view and edit site components
 export default function Sites() {
 	//react hook to return retrevied data to viewSites component
-	const [returnVal, setReturnVal] = useState('');
+	// const [returnVal, setReturnVal] = useState('');
 
 	//Function to Add sites to firebase DB
-	const addSiteDB = (newSite) => {
-		ref
-			.doc(newSite.id)
-			.set(newSite)
-			.then((res) => {
-				alert('success!');
-				return true;
-			})
-			.catch((err) => {
-				alert('error');
-				console.log(err);
-				return false;
-			});
-	};
+	// const addSiteDB = (newSite) => {
+	// 	ref
+	// 		.doc(newSite.id)
+	// 		.set(newSite)
+	// 		.then((res) => {
+	// 			alert('success!');
+	// 			return true;
+	// 		})
+	// 		.catch((err) => {
+	// 			alert('error');
+	// 			console.log(err);
+	// 			return false;
+	// 		});
+	// };
 
 	//Function to Get sites from firebase DB
-	function getSitesDB() {
-		ref.onSnapshot((querySnapshot) => {
-			const items = [];
-			querySnapshot.forEach((doc) => {
-				items.push(doc.data());
-			});
-			setReturnVal(items);
-		});
-		return returnVal;
-	}
+	// function getSitesDB() {
+	// 	ref.onSnapshot((querySnapshot) => {
+	// 		const items = [];
+	// 		querySnapshot.forEach((doc) => {
+	// 			items.push(doc.data());
+	// 		});
+	// 		setReturnVal(items);
+	// 	});
+	// 	return returnVal;
+	// }
 
 	//Function to Delete sites from firebase db
-	const deleteSiteDB = (site) => {
-		ref
-			.doc(site.id)
-			.delete()
-			.then((res) => {
-				alert('success');
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+	// const deleteSiteDB = (site) => {
+	// 	ref
+	// 		.doc(site.id)
+	// 		.delete()
+	// 		.then((res) => {
+	// 			alert('success');
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
 
 	//Function to Edit Sites from firebase db
-	function editSiteDB(updatedSite) {
-		ref
-			.doc(updatedSite.id)
-			.update(updatedSite)
-			.then((res) => {
-				alert('success');
-				return true;
-			})
-			.catch((err) => {
-				console.log(err);
-				return false;
-			});
-	}
+	// function editSiteDB(updatedSite) {
+	// 	ref
+	// 		.doc(updatedSite.id)
+	// 		.update(updatedSite)
+	// 		.then((res) => {
+	// 			alert('success');
+	// 			return true;
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 			return false;
+	// 		});
+	// }
 
 	//Rendering child components (ViewSite, AddSite and EditSite)
 	return (
@@ -84,16 +84,16 @@ export default function Sites() {
 					<Switch>
 						<Route exact path="/sites">
 							<ViewSites
-								getSitesDB={getSitesDB}
-								returnVal={returnVal}
-								deleteSiteDB={deleteSiteDB}
+							// getSitesDB={getSitesDB}
+							// returnVal={returnVal}
+							// deleteSiteDB={deleteSiteDB}
 							></ViewSites>
 						</Route>
 						<Route exact path="/sites/addSite">
-							<AddSite addSiteDB={addSiteDB}></AddSite>;
+							<AddSite></AddSite>;
 						</Route>
 						<Route exact path="/sites/editSite">
-							<EditSite editSiteDB={editSiteDB}></EditSite>
+							<EditSite></EditSite>
 						</Route>
 					</Switch>
 				</div>

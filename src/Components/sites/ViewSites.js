@@ -1,29 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Link } from 'react-router-dom';
+import { getSitesDB } from './SiteDB';
+import firebase from '../../base';
 
 export default function ViewSites(props) {
+	const ref = firebase.firestore().collection('sites');
+
 	//constants to store retreived site data
+	// let sites = [];
+
 	const [sites, setSites] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	//The function to call retreived data
 	//If success, data is saved in sites constant and true is returned
-	function getSites() {
-		setLoading(true);
-		const returnVal = props.getSitesDB;
+	// function getSites() {
 
-		if (returnVal) {
-			setSites(returnVal);
-			return true;
-		} else {
-			return false;
-		}
-	}
+	// }
 
 	//useEffect hook to call getSites function at the initilization of the component
 	useEffect(() => {
 		try {
-			getSites();
+			const items = [];
+
+			ref.onSnapshot((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					items.push(doc.data());
+				});
+				setSites(items);
+				console.log(sites);
+			});
 		} catch (error) {}
 	}, []);
 
