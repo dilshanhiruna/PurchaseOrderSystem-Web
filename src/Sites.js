@@ -33,7 +33,7 @@ const initialState = {
 //variables for styling
 const useStyles = makeStyles((theme) => ({
 	root: {
-		marginTop: 70,
+		marginTop: 10,
 		margin: 'auto',
 		padding: '15px',
 		maxWidth: '500px',
@@ -121,13 +121,17 @@ const Sites = () => {
 
 	return (
 		<MDBContainer fluid>
-			<div className="header-suppliers">
+			{/* <div className="header-suppliers">
 				<div>Sites</div>
+			</div> */}
+			<br /> <br />
+			<div style={{ textAlign: 'center' }}>
+				<h3>Manage Sites</h3>
 			</div>
 			{/* creating a table of sites */}
 			<MDBRow>
 				<MDBCol md="8">
-					<MDBTable style={{ marginTop: '100px' }} bordered>
+					<MDBTable style={{ marginTop: '40px' }} bordered>
 						<MDBTableHead dark>
 							<tr>
 								<th scope="col">ID</th>
