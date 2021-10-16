@@ -1,30 +1,34 @@
 import * as types from './actionTypes';
-import app from '../base';
 import firebase from 'firebase';
 
+//definition of getSites function
 const getSites = (sites) => ({
 	type: types.GET_SITES,
 	payload: sites,
 });
 
+//definition of addSite function
 const addSite = () => ({
 	type: types.ADD_SITE,
 });
 
+//definition of deleteSite function
 const deleteSite = () => ({
 	type: types.DELETE_SITE,
 });
 
+//definition of updateSite function
 const updateSite = () => ({
 	type: types.UPDATE_SITE,
 });
 
+//definition of getSite function
 const getSite = (site) => ({
 	type: types.GET_SITE,
 	payload: site,
 });
 
-//To fetch all the Sites from Firestore database
+//Function to get all sites from the database
 export const getSitesInitiate = () => {
 	return function (dispatch) {
 		firebase
@@ -36,12 +40,11 @@ export const getSitesInitiate = () => {
 					site.push({ ...doc.data(), id: doc.id });
 				});
 				dispatch(getSites(site));
-				// console.log(Sites);
 			});
 	};
 };
 
-//Define the action to initiate adding Site
+//Function to add onae site to the database
 export const addSiteInitiate = (site) => {
 	return function (dispatch) {
 		//To insert data into Firestore collection
@@ -50,6 +53,7 @@ export const addSiteInitiate = (site) => {
 	};
 };
 
+//Function to delete a site from the database
 export const deleteSiteInitiate = (id) => {
 	return function (dispatch) {
 		firebase.firestore().collection('sites').doc(id).delete();
@@ -57,6 +61,7 @@ export const deleteSiteInitiate = (id) => {
 	};
 };
 
+//Function to updated a site from the database
 export const updateSiteInitiate = (id, site) => {
 	return function (dispatch) {
 		firebase.firestore().collection('sites').doc(id).update(site);
@@ -64,6 +69,7 @@ export const updateSiteInitiate = (id, site) => {
 	};
 };
 
+//Function to get one site from the database
 export const getSiteInitiate = (id) => {
 	return function (dispatch) {
 		firebase

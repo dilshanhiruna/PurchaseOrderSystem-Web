@@ -1,3 +1,4 @@
+//Exporting all types
 export const ADD_SITE = 'ADD_SITE';
 export const DELETE_SITE = 'DELETE_SITE';
 export const UPDATE_SITE = 'UPDATE_SITE';

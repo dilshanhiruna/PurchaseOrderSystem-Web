@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import {
 	MDBContainer,
 	MDBRow,
@@ -12,10 +11,8 @@ import {
 	MDBTableBody,
 	MDBIcon,
 } from 'mdb-react-ui-kit';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
-
 import {
 	addSiteInitiate,
 	deleteSiteInitiate,
@@ -27,16 +24,13 @@ import './Suppliers.css';
 
 //Define the initial states
 const initialState = {
-	// name: '',
-	// address: '',
-	// contact: '',
-
 	name: '',
 	location: '',
 	budget: '',
 	limit: '',
 };
 
+//variables for styling
 const useStyles = makeStyles((theme) => ({
 	root: {
 		marginTop: 70,
@@ -52,48 +46,53 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Sites = () => {
+	//definig all react hooks
 	const classes = useStyles();
 	const [state, setState] = useState(initialState);
 	const [editMode, setEditMode] = useState(false);
 	const [userId, setUserId] = useState(null);
 	const [errorMessage, setErrorMessage] = useState(null);
-	// const { name, address, contact } = state;
 	const { name, location, budget, limit } = state;
 	const dispatch = useDispatch();
 	const { sites, site } = useSelector((state) => state.data);
 
+	//calling get all sites function using useEffect hook
 	useEffect(() => {
 		dispatch(getSitesInitiate());
 	}, []);
 
+	//calling get one site function using useEffect hook
 	useEffect(() => {
 		if (site) {
 			setState({ ...site });
 		}
 	}, [site]);
 
+	//calling delete function
 	const deleteSite = (id) => {
 		if (window.confirm('Are you sure that you want to delete the Site?')) {
 			dispatch(deleteSiteInitiate(id));
 		}
 	};
 
+	//calling edit function
 	const editSite = (id) => {
 		setEditMode(true);
 		setUserId(id);
 		dispatch(getSiteInitiate(id));
 	};
 
+	//on form value change
 	const handleInputChange = (e) => {
 		let { name, value } = e.target;
 		setState({ ...state, [name]: value });
 	};
 
+	//on form submit
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		//Validations
-		// if (!name || !address || !contact) {
 		if (!name || !location || !budget || !limit) {
 			setErrorMessage('Fields cannot be empty!');
 		} else {
@@ -102,7 +101,6 @@ const Sites = () => {
 				dispatch(addSiteInitiate(state));
 
 				//To clear the input fields after inserting the record to the table (after submitting the form)
-				// setState({ name: '', address: '' });
 				setState({ name: '', location: '' });
 
 				//If all the input fields contain values
@@ -113,7 +111,6 @@ const Sites = () => {
 				setEditMode(false);
 
 				//To clear the input fields after updating the details
-				// setState({ name: '', address: '' });
 				setState({ name: '', location: '' });
 
 				//If all the input fields contain values
@@ -127,6 +124,7 @@ const Sites = () => {
 			<div className="header-suppliers">
 				<div>Sites</div>
 			</div>
+			{/* creating a table of sites */}
 			<MDBRow>
 				<MDBCol md="8">
 					<MDBTable style={{ marginTop: '100px' }} bordered>
@@ -145,9 +143,6 @@ const Sites = () => {
 								<MDBTableBody key={index}>
 									<tr>
 										<th scope="row">{index + 1}</th>
-										{/* <td>{item.name}</td>
-										<td>{item.address}</td>
-										<td>{item.contact}</td> */}
 										<td>{item.name}</td>
 										<td>{item.location}</td>
 										<td>{item.budget}</td>
@@ -179,6 +174,7 @@ const Sites = () => {
 					</MDBTable>
 				</MDBCol>
 
+				{/* form to add/edit sites */}
 				<MDBCol md="4">
 					<form onSubmit={handleSubmit} className={classes.root}>
 						<MDBTypography className="text-start" variant="h5">

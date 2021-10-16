@@ -6,6 +6,7 @@ const initialState = {
 	site: {},
 };
 
+//assigning values for the objects
 const siteReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case types.GET_SITES:
