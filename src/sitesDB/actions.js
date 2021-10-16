@@ -33,7 +33,7 @@ export const getSitesInitiate = () => {
 	return function (dispatch) {
 		firebase
 			.firestore()
-			.collection('sites')
+			.collection('Sites')
 			.onSnapshot((querySnapshot) => {
 				const site = [];
 				querySnapshot.forEach((doc) => {
@@ -48,7 +48,7 @@ export const getSitesInitiate = () => {
 export const addSiteInitiate = (site) => {
 	return function (dispatch) {
 		//To insert data into Firestore collection
-		firebase.firestore().collection('sites').doc().set(site);
+		firebase.firestore().collection('Sites').doc().set(site);
 		dispatch(addSite());
 	};
 };
@@ -56,7 +56,7 @@ export const addSiteInitiate = (site) => {
 //Function to delete a site from the database
 export const deleteSiteInitiate = (id) => {
 	return function (dispatch) {
-		firebase.firestore().collection('sites').doc(id).delete();
+		firebase.firestore().collection('Sites').doc(id).delete();
 		dispatch(deleteSite());
 	};
 };
@@ -64,7 +64,7 @@ export const deleteSiteInitiate = (id) => {
 //Function to updated a site from the database
 export const updateSiteInitiate = (id, site) => {
 	return function (dispatch) {
-		firebase.firestore().collection('sites').doc(id).update(site);
+		firebase.firestore().collection('Sites').doc(id).update(site);
 		dispatch(updateSite());
 	};
 };
@@ -74,7 +74,7 @@ export const getSiteInitiate = (id) => {
 	return function (dispatch) {
 		firebase
 			.firestore()
-			.collection('sites')
+			.collection('Sites')
 			.doc(id)
 			.get()
 			.then((site) => {

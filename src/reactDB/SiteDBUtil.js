@@ -1,10 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import {
+	addSiteInitiate,
+	deleteSiteInitiate,
+	getSiteInitiate,
+	getSitesInitiate,
+	updateSiteInitiate,
+} from '../sitesDB/actions';
 
-function addSite() {
-	return true;
+export function addSite(newSite) {
+	const budgetType = typeof newSite.limit;
+	const limitType = typeof newSite.limit;
+	if (budgetType === 'number' && limitType === 'number') {
+		addSiteInitiate(newSite);
+		return true;
+	} else {
+		return false;
+	}
 }
 
-function getSite() {
+export function getSite() {
 	return true;
 }
-export default { addSite, getSite };

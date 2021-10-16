@@ -1,20 +1,40 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { addSite } from './reactDB/SiteDBUtil';
+import { addSite, getSite } from './reactDB/SiteDBUtil';
 
 Enzyme.configure({ adapter: new Adapter() });
 
+//testing CRUD dunctions of site component
 describe('SitesComponent', () => {
-	// it('should show text', () => {
-	// 	const wrapper = shallow(<SiteDBUtil />);
-	// 	const text = wrapper.find('div div');
-	// 	expect(text.text()).toBe('hey');
-	// 	// expect(test).toBe(true);
-	// });
+	//positive test case for add site function
+	it('should return true', () => {
+		//creating new object with correct data types
+
+		const newSite = {
+			name: 'CVN Mathara',
+			locationt: 'Mathara',
+			budget: 100000,
+			limit: 20000,
+		};
+		const val = addSite(newSite);
+		expect(val).toEqual(true);
+	});
+
+	//negetive test case for add site function
+	it('should return false', () => {
+		const newSite = {
+			name: 'CVN Mathara',
+			locationt: 'Mathara',
+			budget: '100000',
+			limit: '20000',
+		};
+		const val = addSite(newSite);
+		expect(val).toEqual(false);
+	});
 
 	it('should return true', () => {
-		const val = addSite();
+		const val = getSite();
 		expect(val).toEqual(true);
 	});
 });
