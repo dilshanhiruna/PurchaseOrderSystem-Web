@@ -9,7 +9,7 @@ import { AuthProvider } from './Auth';
 import PrivateRoute from './PrivateRoute';
 import PurchaseOrder1 from './purchaseOrder_Components/purchaseOrder1';
 import Navbar from './Components/Sidebar/Navbar';
-import Sites from './Components/sites/Sites';
+import Sites from './Sites';
 import AddSite from './Components/sites/AddSite';
 
 const App = () => {
@@ -33,7 +33,6 @@ const App = () => {
 			</Router>
 		</AuthProvider>
 	);
-
 };
 
 /*<sideNavigation/>
