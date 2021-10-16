@@ -1,7 +1,5 @@
 import {
 	addSiteInitiate,
-	deleteSiteInitiate,
-	getSiteInitiate,
 	getSitesInitiate,
 	updateSiteInitiate,
 } from '../sitesDB/actions';
@@ -18,5 +16,17 @@ export function addSite(newSite) {
 }
 
 export function getSite() {
+	getSitesInitiate();
 	return true;
+}
+
+export function updateSite(editedSite) {
+	const budgetType = typeof editedSite.limit;
+	const limitType = typeof editedSite.limit;
+	if (budgetType === 'number' && limitType === 'number') {
+		updateSiteInitiate(editedSite);
+		return true;
+	} else {
+		return false;
+	}
 }
