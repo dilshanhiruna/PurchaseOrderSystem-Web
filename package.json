@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
-    "babel-jest": "^27.2.5",
     "chokidar": "^3.5.2",
     "firebase": "^7.15.0",
     "mdb-react-ui-kit": "^1.4.0",
